@@ -17,16 +17,18 @@ package org.apache.lucene.demo;
  * limitations under the License.
  */
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.es.Analizador;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
+import org.apache.lucene.document.IntPoint;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.queryparser.classic.QueryParser;
@@ -35,6 +37,11 @@ import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.FSDirectory;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 /** Simple command-line based search demo. */
 public class SearchFiles {
@@ -44,94 +51,162 @@ public class SearchFiles {
   /** Simple command-line based search demo. */
   public static void main(String[] args) throws Exception {
     String usage =
-      "Usage:\tjava org.apache.lucene.demo.SearchFiles [-index dir] [-field f] [-repeat n] [-queries file] [-query string] [-raw] [-paging hitsPerPage]\n\nSee http://lucene.apache.org/core/4_1_0/demo/ for details.";
+            "Usage:\tjava org.apache.lucene.demo.SearchFiles [-index dir] [-field f] [-repeat n] [-queries file] [-query string] [-raw] [-paging hitsPerPage]\n\nSee http://lucene.apache.org/core/4_1_0/demo/ for details.";
     if (args.length > 0 && ("-h".equals(args[0]) || "-help".equals(args[0]))) {
       System.out.println(usage);
       System.exit(0);
     }
-
+    String infoNeeds = "C:\\Users\\Portatil\\Desktop\\Davy\\7CUATRI\\RI\\recuperacion\\trabajo\\src\\selectedInformationNeeds.xml";
     String index = "index";
-    String field = "contents";
-    String queries = null;
-    int repeat = 0;
-    boolean raw = false;
+    String output = "resultados.txt";
     String queryString = null;
     int hitsPerPage = 10;
-    
-    for(int i = 0;i < args.length;i++) {
+
+    for (int i = 0; i < args.length; i++) {
       if ("-index".equals(args[i])) {
-        index = args[i+1];
+        index = args[i + 1];
         i++;
-      } else if ("-field".equals(args[i])) {
-        field = args[i+1];
+      } else if ("-infoNeeds".equals(args[i])) {
+        infoNeeds = args[i + 1];
         i++;
-      } else if ("-queries".equals(args[i])) {
-        queries = args[i+1];
-        i++;
-      } else if ("-query".equals(args[i])) {
-        queryString = args[i+1];
-        i++;
-      } else if ("-repeat".equals(args[i])) {
-        repeat = Integer.parseInt(args[i+1]);
-        i++;
-      } else if ("-raw".equals(args[i])) {
-        raw = true;
-      } else if ("-paging".equals(args[i])) {
-        hitsPerPage = Integer.parseInt(args[i+1]);
-        if (hitsPerPage <= 0) {
-          System.err.println("There must be at least 1 hit per page.");
-          System.exit(1);
-        }
+      } else if ("-output".equals(args[i])) {
+        output = args[i + 1];
         i++;
       }
     }
-    
+
     IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get(index)));
     IndexSearcher searcher = new IndexSearcher(reader);
-    Analyzer analyzer = new StandardAnalyzer();
-
-    BufferedReader in = null;
-    if (queries != null) {
-      in = new BufferedReader(new InputStreamReader(new FileInputStream(queries), "UTF-8"));
-    } else {
-      in = new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
+    Analyzer analyzer = new Analizador();
+    Analyzer nameAnalyzer = new Analizador();
+    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+    DocumentBuilder builder = factory.newDocumentBuilder();
+    org.w3c.dom.Document document = builder.parse(new File(infoNeeds));
+    String linea;
+    ArrayList<String> nombres = new ArrayList<String>();
+    while((linea=br.readLine())!=null){
+      nombres.add(linea);
     }
-    QueryParser parser = new QueryParser(field, analyzer);
-    while (true) {
-      if (queries == null && queryString == null) {                        // prompt the user
-        System.out.println("Enter query: ");
-      }
-
-      String line = queryString != null ? queryString : in.readLine();
-
-      if (line == null || line.length() == -1) {
-        break;
-      }
-
-      line = line.trim();
-      if (line.length() == 0) {
-        break;
-      }
-      
-      Query query = parser.parse(line);
-      System.out.println("Searching for: " + query.toString(field));
-            
-      if (repeat > 0) {                           // repeat & time as benchmark
-        Date start = new Date();
-        for (int i = 0; i < repeat; i++) {
-          searcher.search(query, 100);
+    Element e = document.getDocumentElement();
+    NodeList nodes = e.getChildNodes();
+    String informationNeeds[][] = new String[5][2];
+    int indice = 0;
+    for (int i = 0; i < nodes.getLength(); i++) {
+      if (nodes.item(i).getNodeName().equals("informationNeed")) {
+        NodeList aux = nodes.item(i).getChildNodes();
+        for (int j = 0; j < aux.getLength(); j++) {
+          if (aux.item(j).getNodeName().equals("identifier")) {
+            informationNeeds[indice][0] = aux.item(j).getTextContent();
+          } else if (aux.item(j).getNodeName().equals("text")) {
+            informationNeeds[indice][1] = aux.item(j).getTextContent();
+          }
         }
-        Date end = new Date();
-        System.out.println("Time: "+(end.getTime()-start.getTime())+"ms");
-      }
-
-      doPagingSearch(in, searcher, query, hitsPerPage, raw, queries == null && queryString == null);
-
-      if (queryString != null) {
-        break;
+        indice++;
       }
     }
-    reader.close();
+    FileWriter resultado = new FileWriter(output);
+    PrintWriter resultadoWriter = new PrintWriter(resultado);
+
+    for (int i = 0; i < 5; i++) {
+      String consulta = informationNeeds[i][1];
+      System.out.println("PROCESANDO: " + consulta);
+      //sacar fechas
+      int desde = -1, hasta = -1;
+      // Busqueda de fechas en el documento
+      Pattern fecha = Pattern.compile("(publicados entre |periodo | a partir de )(?<anyo>\\d\\d\\d\\d)");
+      Matcher m = fecha.matcher(consulta);
+      while (m.find()) {
+        desde = Integer.parseInt(m.group("anyo"));
+      }
+      fecha = Pattern.compile("(y |-)(?<anyo>\\d\\d\\d\\d)");
+      m = fecha.matcher(consulta);
+      while (m.find()) {
+        hasta = Integer.parseInt(m.group("anyo"));
+      }
+      if(desde == -1){
+        fecha = Pattern.compile("(los últimos )(?<anyo>\\d)");
+        m = fecha.matcher(consulta);
+        while (m.find()) {
+          desde = 2018 - Integer.parseInt(m.group("anyo"));
+          hasta = 2018;
+        }
+      }
+      System.out.println("desde: " + desde + " hasta: " + hasta);
+      //consulta sobre las fechas encontradas
+      Query dateQuery = IntPoint.newRangeQuery("date", Integer.MIN_VALUE, Integer.MAX_VALUE);
+      if(desde != -1 && hasta != -1){
+        dateQuery = IntPoint.newRangeQuery("date", desde, hasta);
+      }
+      else if(desde != -1){
+        dateQuery = IntPoint.newRangeQuery("date", desde, Integer.MAX_VALUE);
+      }
+      else if(hasta != -1){
+        dateQuery = IntPoint.newRangeQuery("date", Integer.MIN_VALUE, hasta);
+      }
+      /*******************************************************************************
+       * SI NO SE ESPECIFICA EN LAS CONSULTAS EL TIPO DEL TRABAJO, ESTO SOBRARIA SUPONGO
+       ***********************************************************/
+      // Sacar tipo de trabajo
+     /* String tipo=""; // "" da igual, bachelorthesis o masterthesis
+      Pattern ptipo = Pattern.compile("master| tesis de fin de master| tesis de master|trabajo fin de master |trabajo de doctorado|doctora");
+      if(ptipo.matcher(consulta).find()){
+        tipo="masterthesis";
+      }
+      else {
+        ptipo = Pattern.compile("tfg |trabajo fin de grado");
+        if(ptipo.matcher(consulta).find()){
+          tipo="bachelorthesis";
+        }
+      }
+      Query tipoQuery=null;
+      if(!tipo.equals("")){
+        QueryParser parserTipo = new QueryParser("type", analyzer);
+        tipoQuery = parserTipo.parse(tipo);
+      }
+      */
+
+      //Sacar nombres propios y consultar sobre creator
+      Pattern propio = Pattern.compile("((?<nombre>\\p{Upper}[a-z]+) )");
+      m = propio.matcher(consulta);
+      String nom="";
+      while (m.find()) {
+        if(nombres.contains(m.group("nombre"))){
+          nom + =m.group("nombre")+" ";
+        }
+      }
+      System.out.println(nom);
+      /*
+      // Consulta sobre title, subject y description
+      QueryParser parsert = new QueryParser("title", analyzer);
+      Query titulo = parsert.parse(consulta);
+      QueryParser parsers = new QueryParser("subject", analyzer);
+      Query subject = parsers.parse(consulta);
+      QueryParser parserd = new QueryParser("description", analyzer);
+      Query description = parserd.parse(consulta);
+      Builder builderConsulta = new BooleanQuery.Builder()
+              .add(new BoostQuery(date,1f),BooleanClause.Occur.SHOULD)
+              .add(new BoostQuery(titulo,1),BooleanClause.Occur.SHOULD)
+              .add(new BoostQuery(subject,1.25f),BooleanClause.Occur.SHOULD)
+              .add(new BoostQuery(description,0.4f),BooleanClause.Occur.SHOULD);
+      if(tipoQuery!=null){builderConsulta.add(new BoostQuery(tipoQuery,0.75f),BooleanClause.Occur.SHOULD);}
+
+      if(nom!=""){
+        QueryParser parserc = new QueryParser("creator", analyzer);
+        Query creator = parserc.parse(nom);
+        builderConsulta.add(new BoostQuery(creator,5),BooleanClause.Occur.SHOULD);
+      }
+      Query query = builderConsulta.build();
+      TopDocs results = searcher.search(query, Integer.MAX_VALUE);
+      ScoreDoc[] hits = results.scoreDocs;
+      hits = searcher.search((Query)query, (int)results.totalHits).scoreDocs;
+      for(int j=0;j<hits.length;j++){
+        Document doc = searcher.doc(hits[j].doc);
+        resulWriter.println(info[i][0] + "\t" + doc.get("name"));
+      }
+      //System.out.println("----------------------------------------------------");
+
+    }*/
+    }
   }
 
   /**
@@ -143,7 +218,7 @@ public class SearchFiles {
    * to fill 5 result pages. If the user wants to page beyond this limit, then the query
    * is executed another time and all hits are collected.
    * 
-   */
+   *//*
   public static void doPagingSearch(BufferedReader in, IndexSearcher searcher, Query query, 
                                      int hitsPerPage, boolean raw, boolean interactive) throws IOException {
  
@@ -178,6 +253,7 @@ public class SearchFiles {
         }
 
         Document doc = searcher.doc(hits[i].doc);
+        System.out.println(doc.toString());
         String path = doc.get("path");
         if (path != null) {
           System.out.println((i+1) + ". " + path);
@@ -230,5 +306,6 @@ public class SearchFiles {
         end = Math.min(numTotalHits, start + hitsPerPage);
       }
     }
-  }
+  }*/
+
 }
