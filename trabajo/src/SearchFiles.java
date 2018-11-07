@@ -171,7 +171,7 @@ public class SearchFiles {
       String nom="";
       while (m.find()) {
         if(nombres.contains(m.group("nombre"))){
-          nom + =m.group("nombre")+" ";
+          nom += m.group("nombre")+" ";
         }
       }
       System.out.println(nom);
