@@ -59,7 +59,7 @@ public final class Analizador extends StopwordAnalyzerBase {
         //String[] stopWords = { "el", "la", "lo", "en", "para"};
         String stopWord;
         FileReader file = new FileReader(
-                "C:\\Users\\Portatil\\Desktop\\Davy\\7CUATRI\\RI\\recuperacion\\trabajo\\src\\stop_words_spanish.txt");
+                "C:\\Users\\Portatil\\Desktop\\Davy\\7CUATRI\\RI\\recuperacion\\trabajo\\src\\stopwords-es.txt");
         BufferedReader buffer = new BufferedReader(file);
         Vector<String> stopWords = new Vector<>();
         while ((stopWord = buffer.readLine()) != null) {
@@ -137,8 +137,8 @@ public final class Analizador extends StopwordAnalyzerBase {
         result = new StopFilter(result, stopwords); // quitar stopwords
         if(!stemExclusionSet.isEmpty())
             result = new SetKeywordMarkerFilter(result, stemExclusionSet);
-        //result = new SpanishLightStemFilter(result);
-        result = new SnowballFilter(result,"Spanish");
+        result = new SpanishLightStemFilter(result);
+        //result = new SnowballFilter(result,"Spanish");
         return new TokenStreamComponents(source, result);
     }
 
