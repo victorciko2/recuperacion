@@ -45,7 +45,7 @@ public final class Analizador extends StopwordAnalyzerBase {
     private final CharArraySet stemExclusionSet;
 
     /** File containing default Spanish stopwords. */
-    public final static String DEFAULT_STOPWORD_FILE = "C:\\Users\\Portatil\\Desktop\\Davy\\7CUATRI\\RI\\recuperacion\\trabajo\\srcstop_words_spanish.txt";
+    public final static String DEFAULT_STOPWORD_FILE = "C:\\Users\\Portatil\\Desktop\\Davy\\7CUATRI\\RI\\recuperacion\\trabajo\\src\\stopwords-es.txt";
 
     /**
      * Returns an unmodifiable instance of the default stop words set.
