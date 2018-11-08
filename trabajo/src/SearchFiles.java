@@ -45,9 +45,12 @@ import javax.xml.parsers.DocumentBuilderFactory;
 /** Simple command-line based search demo. */
 public class SearchFiles {
 
-  private SearchFiles() {}
+  private SearchFiles() {
+  }
 
-  /** Simple command-line based search demo. */
+  /**
+   * Simple command-line based search demo.
+   */
   public static void main(String[] args) throws Exception {
     String usage =
             "Usage:\tjava org.apache.lucene.demo.SearchFiles [-index dir] [-field f] [-repeat n] [-queries file] [-query string] [-raw] [-paging hitsPerPage]\n\nSee http://lucene.apache.org/core/4_1_0/demo/ for details.";
@@ -82,14 +85,24 @@ public class SearchFiles {
     DocumentBuilder builder = factory.newDocumentBuilder();
     org.w3c.dom.Document document = builder.parse(new File(infoNeeds));
 
-    File archivo = new File ("C:\\Users\\Portatil\\Desktop\\Davy\\7CUATRI\\RI\\recuperacion\\trabajo\\src\\nombres.txt");
-    FileReader fr = new FileReader (archivo);
+    File archivo = new File("C:\\Users\\Portatil\\Desktop\\Davy\\7CUATRI\\RI\\recuperacion\\trabajo\\src\\nombres.txt");
+    FileReader fr = new FileReader(archivo);
     BufferedReader br = new BufferedReader(fr);
 
     String linea;
     ArrayList<String> nombres = new ArrayList<String>();
-    while((linea=br.readLine())!=null){
+    while ((linea = br.readLine()) != null) {
       nombres.add(linea);
+    }
+
+    archivo = new File("C:\\Users\\Portatil\\Desktop\\Davy\\7CUATRI\\RI\\recuperacion\\trabajo\\src\\diccionarioPalabras.txt");
+    fr = new FileReader(archivo);
+    br = new BufferedReader(fr);
+
+    linea = "";
+    ArrayList<String> diccionarioPalabras= new ArrayList<String>();
+    while ((linea = br.readLine()) != null) {
+      diccionarioPalabras.add(linea);
     }
 
     Element e = document.getDocumentElement();
@@ -109,6 +122,7 @@ public class SearchFiles {
         indice++;
       }
     }
+
     FileWriter resultado = new FileWriter(output);
     PrintWriter resultadoWriter = new PrintWriter(resultado);
 
@@ -127,7 +141,7 @@ public class SearchFiles {
       while (m.find()) {
         hasta = Integer.parseInt(m.group("anyo"));
       }
-      if(desde == -1){
+      if (desde == -1) {
         fecha = Pattern.compile("(los últimos )(?<anyo>\\d)");
         m = fecha.matcher(consulta);
         while (m.find()) {
@@ -136,58 +150,53 @@ public class SearchFiles {
         }
       }
       System.out.println("desde: " + desde + " hasta: " + hasta);
-      //consulta sobre las fechas encontradas
       Query dateQuery = IntPoint.newRangeQuery("date", Integer.MIN_VALUE, Integer.MAX_VALUE);
-      if(desde != -1 && hasta != -1){
+      if (desde != -1 && hasta != -1) {
         dateQuery = IntPoint.newRangeQuery("date", desde, hasta);
-      }
-      else if(desde != -1){
+      } else if (desde != -1) {
         dateQuery = IntPoint.newRangeQuery("date", desde, Integer.MAX_VALUE);
-      }
-      else if(hasta != -1){
+      } else if (hasta != -1) {
         dateQuery = IntPoint.newRangeQuery("date", Integer.MIN_VALUE, hasta);
       }
 
-      //Sacar nombres propios y consultar sobre creator
       Pattern propio = Pattern.compile("(?<nombre>[Á-ÚA-Z][a-zá-ú]+)");
       m = propio.matcher(consulta);
-      String nom="";
+      String nom = "";
       while (m.find()) {
-        if(nombres.contains(m.group("nombre"))){
-          nom +=  m.group("nombre")+" ";
+        if (nombres.contains(m.group("nombre"))) {
+          nom += m.group("nombre") + " ";
+        }
+
+        QueryParser parserTitle = new QueryParser("title", analyzer);
+        Query tituloQuery = parserTitle.parse(consulta);
+        QueryParser parserSubject = new QueryParser("subject", analyzer);
+        Query subjectQuery = parserSubject.parse(consulta);
+        QueryParser parserDescription = new QueryParser("description", analyzer);
+        Query descriptionQuery = parserDescription.parse(consulta);
+
+        Builder builderConsulta = new BooleanQuery.Builder()
+                .add(new BoostQuery(dateQuery, 1f), BooleanClause.Occur.SHOULD)
+                .add(new BoostQuery(tituloQuery, 1), BooleanClause.Occur.SHOULD)
+                .add(new BoostQuery(subjectQuery, 1.3f), BooleanClause.Occur.SHOULD)
+                .add(new BoostQuery(descriptionQuery, 0.2f), BooleanClause.Occur.SHOULD);
+        
+        if (nom != "") {
+          QueryParser parserNombre = new QueryParser("creator", nameAnalyzer);
+          Query creator = parserNombre.parse(nom);
+          builderConsulta.add(new BoostQuery(creator, 5), BooleanClause.Occur.SHOULD);
+        }
+
+        Query query = builderConsulta.build();
+        TopDocs results = searcher.search(query, Integer.MAX_VALUE);
+        ScoreDoc[] hits = results.scoreDocs;
+        hits = searcher.search((Query) query, (int) results.totalHits).scoreDocs;
+
+        for (int j = 0; j < hits.length; j++) {
+          Document doc = searcher.doc(hits[j].doc);
+          resultadoWriter.println(informationNeeds[i][0] + "\t" + doc.get("path"));
+        }
+
       }
-      System.out.println("nombre: " + nom);
-      // Consulta sobre title, subject y description
-      QueryParser parserTitle = new QueryParser("title", analyzer);
-      Query tituloQuery = parserTitle.parse(consulta);
-      QueryParser parserSubject = new QueryParser("subject", analyzer);
-      Query subjectQuery = parserSubject.parse(consulta);
-      QueryParser parserDescription = new QueryParser("description", analyzer);
-      Query descriptionQuery = parserDescription.parse(consulta);
-
-      Builder builderConsulta = new BooleanQuery.Builder()
-              .add(new BoostQuery(dateQuery,1f),BooleanClause.Occur.SHOULD)
-              .add(new BoostQuery(tituloQuery,1),BooleanClause.Occur.SHOULD)
-              .add(new BoostQuery(subjectQuery,1.25f),BooleanClause.Occur.SHOULD)
-              .add(new BoostQuery(descriptionQuery,0.4f),BooleanClause.Occur.SHOULD);
-     // if(tipoQuery!=null){builderConsulta.add(new BoostQuery(tipoQuery,0.75f),BooleanClause.Occur.SHOULD);}
-
-      if(nom!=""){
-        QueryParser parserNombre = new QueryParser("creator", nameAnalyzer);
-        Query creator = parserNombre.parse(nom);
-        builderConsulta.add(new BoostQuery(creator,5),BooleanClause.Occur.SHOULD);
-      }
-
-      Query query = builderConsulta.build();
-      TopDocs results = searcher.search(query, Integer.MAX_VALUE);
-      ScoreDoc[] hits = results.scoreDocs;
-      hits = searcher.search((Query)query, (int)results.totalHits).scoreDocs;
-      for(int j=0;j<hits.length;j++){
-        Document doc = searcher.doc(hits[j].doc);
-        resultadoWriter.println(informationNeeds[i][0] + "\t" + doc.get("path"));
-      }
-      //System.out.println("----------------------------------------------------");
-
     }
     reader.close();
     resultadoWriter.close();
