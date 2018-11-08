@@ -167,25 +167,47 @@ public class SearchFiles {
           nom += m.group("nombre") + " ";
         }
 
+        String tipo="";
+        Pattern ptipo = Pattern.compile("master| tesis de fin de master| tesis de master|trabajo fin de master |trabajo de doctorado|doctora");
+        if(ptipo.matcher(consulta).find()){
+          tipo="masterthesis";
+        }
+        else {
+          ptipo = Pattern.compile("tfg |trabajo fin de grado");
+          if(ptipo.matcher(consulta).find()){
+            tipo="bachelorthesis";
+          }
+        }
+
+        Query tipoQuery = null;
+        if(!tipo.equals("")){
+          QueryParser parserTipo = new QueryParser("type", analyzer);
+          tipoQuery = parserTipo.parse(tipo);
+        }
+
         QueryParser parserTitle = new QueryParser("title", analyzer);
         Query tituloQuery = parserTitle.parse(consulta);
+
         QueryParser parserSubject = new QueryParser("subject", analyzer);
         Query subjectQuery = parserSubject.parse(consulta);
+
         QueryParser parserDescription = new QueryParser("description", analyzer);
         Query descriptionQuery = parserDescription.parse(consulta);
 
-        Builder builderConsulta = new BooleanQuery.Builder()
-                .add(new BoostQuery(dateQuery, 1f), BooleanClause.Occur.SHOULD)
+        Builder builderConsulta = new BooleanQuery.Builder()                
                 .add(new BoostQuery(tituloQuery, 1), BooleanClause.Occur.SHOULD)
-                .add(new BoostQuery(subjectQuery, 1.3f), BooleanClause.Occur.SHOULD)
-                .add(new BoostQuery(descriptionQuery, 0.2f), BooleanClause.Occur.SHOULD);
+                .add(new BoostQuery(subjectQuery, 1.4f), BooleanClause.Occur.SHOULD)
+                .add(new BoostQuery(dateQuery, 1f), BooleanClause.Occur.SHOULD)
+                .add(new BoostQuery(descriptionQuery, 0.3f), BooleanClause.Occur.SHOULD);
         
         if (nom != "") {
           QueryParser parserNombre = new QueryParser("creator", nameAnalyzer);
           Query creator = parserNombre.parse(nom);
           builderConsulta.add(new BoostQuery(creator, 5), BooleanClause.Occur.SHOULD);
         }
-
+        if(tipoQuery!=null){
+          builderConsulta.add(new BoostQuery(tipoQuery,0.75f),BooleanClause.Occur.SHOULD);
+        }
         Query query = builderConsulta.build();
         TopDocs results = searcher.search(query, Integer.MAX_VALUE);
         ScoreDoc[] hits = results.scoreDocs;
@@ -195,7 +217,6 @@ public class SearchFiles {
           Document doc = searcher.doc(hits[j].doc);
           resultadoWriter.println(informationNeeds[i][0] + "\t" + doc.get("path"));
         }
-
       }
     }
     reader.close();
