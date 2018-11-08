@@ -155,7 +155,6 @@ public class SearchFiles {
       while (m.find()) {
         if(nombres.contains(m.group("nombre"))){
           nom +=  m.group("nombre")+" ";
-        }
       }
       System.out.println("nombre: " + nom);
       // Consulta sobre title, subject y description
@@ -170,7 +169,7 @@ public class SearchFiles {
               .add(new BoostQuery(dateQuery,1f),BooleanClause.Occur.SHOULD)
               .add(new BoostQuery(tituloQuery,1),BooleanClause.Occur.SHOULD)
               .add(new BoostQuery(subjectQuery,1.25f),BooleanClause.Occur.SHOULD)
-              .add(new BoostQuery(descriptionQuery,0.4f),BooleanClause.Occur.MUST);
+              .add(new BoostQuery(descriptionQuery,0.4f),BooleanClause.Occur.SHOULD);
      // if(tipoQuery!=null){builderConsulta.add(new BoostQuery(tipoQuery,0.75f),BooleanClause.Occur.SHOULD);}
 
       if(nom!=""){
