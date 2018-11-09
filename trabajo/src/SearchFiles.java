@@ -50,6 +50,19 @@ public class SearchFiles {
 private SearchFiles() {
 }
 
+public static int Hamming(String n, String m) {
+  int pLarga = Math.max(n.length(), m.length());
+  int pCorta = Math.min(n.length(), m.length());
+  int diferencia = 0;
+
+  for (int i = 0; i<pCorta; i++) {
+    if (n.charAt(i) != m.charAt(i)) diferencia++;
+  }
+  diferencia += pLarga - pCorta;
+
+  return diferencia;
+}
+
 /**
 * Simple command-line based search demo.
 */
@@ -89,7 +102,10 @@ private SearchFiles() {
     DocumentBuilder builder = factory.newDocumentBuilder();
     org.w3c.dom.Document document = builder.parse(new File(infoNeeds));
 
-    File archivo = new File("C:\\Users\\Portatil\\Desktop\\Davy\\7CUATRI\\RI\\recuperacion\\trabajo\\src\\nombres.txt");
+    String pathNombres = new File("src\\nombres.txt").getAbsolutePath();
+    System.out.println(pathNombres);
+    //File archivo = new File("C:\\Users\\Portatil\\Desktop\\Davy\\7CUATRI\\RI\\recuperacion\\trabajo\\src\\nombres.txt");
+    File archivo = new File(pathNombres);
     FileReader fr = new FileReader(archivo);
     BufferedReader br = new BufferedReader(fr);
 
@@ -133,16 +149,22 @@ private SearchFiles() {
 
     for (int i = 0; i < 5; i++) {
       String consulta = informationNeeds[i][1];
-      consulta = consulta.replaceAll("([\\s|\\(|\\),|\\.|¿|?])", " ");
-      String consultaCorregida = "";
-      System.out.println("saneada: " + consulta + "\n");
+      consulta = consulta.replaceAll("[?¿!¡.,)(]", "");
 
-      ArrayList<String> consultaTokenizada = new ArrayList<String>(Arrays.asList(consulta.split(" ")));
-
-      /*for(int j = 0; j < consultaTokenizada.size(); j++){
-        System.out.print(consultaTokenizada.get(j) + " - ");
-      }*/
-
+      String[] consultaSplit = consulta.split(" ");
+      consulta = "";
+      int mejorResultado = Integer.MAX_VALUE, resultadoActual = 0, indiceMejorResultado = -1;
+      for (int j = 0; j < consultaSplit.length; j++){ // j iterador para cada palabra de la consulta
+        for (int k = 0; k < diccionarioPalabras.size(); k++){ // k iterador para cada palabra del diccionario
+          resultadoActual = Hamming(consultaSplit[j], diccionarioPalabras.get(k));
+          if (resultadoActual < mejorResultado){
+            mejorResultado = resultadoActual;
+            indiceMejorResultado = k;
+          }
+        }
+        mejorResultado = Integer.MAX_VALUE;
+        consulta += diccionarioPalabras.get(indiceMejorResultado) + " ";
+      }
       System.out.println("CONSULTA: " + consulta);
       int desde = -1, hasta = -1;
       Pattern fecha = Pattern.compile("(publicados entre |periodo | a partir de )(?<anyo>\\d\\d\\d\\d)");

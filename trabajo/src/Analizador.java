@@ -17,10 +17,7 @@
 package org.apache.lucene.analysis.es;
 
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Vector;
 
@@ -58,8 +55,9 @@ public final class Analizador extends StopwordAnalyzerBase {
     public static CharArraySet createStopSet2() throws IOException {
         //String[] stopWords = { "el", "la", "lo", "en", "para"};
         String stopWord;
+        String pathStopwords = new File("src\\stopwords-es.txt").getAbsolutePath();
         FileReader file = new FileReader(
-                "C:\\Users\\Portatil\\Desktop\\Davy\\7CUATRI\\RI\\recuperacion\\trabajo\\src\\stopwords-es.txt");
+                pathStopwords);
         BufferedReader buffer = new BufferedReader(file);
         Vector<String> stopWords = new Vector<>();
         while ((stopWord = buffer.readLine()) != null) {
