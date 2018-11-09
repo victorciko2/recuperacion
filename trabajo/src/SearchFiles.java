@@ -74,7 +74,8 @@ public static int Hamming(String n, String m) {
       System.exit(0);
     }
 
-    String infoNeeds = "C:\\Users\\Portatil\\Desktop\\Davy\\7CUATRI\\RI\\recuperacion\\trabajo\\src\\selectedInformationNeeds.xml";
+    //String infoNeeds = "C:\\Users\\Portatil\\Desktop\\Davy\\7CUATRI\\RI\\recuperacion\\trabajo\\src\\selectedInformationNeeds.xml";
+    String infoNeeds = new File("src\\selectedInformationNeeds.xml").getAbsolutePath();
     String index = "index";
     String output = "resultados.txt";
     String queryString = null;
