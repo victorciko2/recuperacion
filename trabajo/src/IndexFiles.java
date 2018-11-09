@@ -62,10 +62,7 @@ public class IndexFiles {
 
   /** Index all text files under a directory. */
   public static void main(String[] args) {
-    String usage = "java org.apache.lucene.demo.IndexFiles"
-            + " [-index INDEX_PATH] [-docs DOCS_PATH] [-update]\n\n"
-            + "This indexes the documents in DOCS_PATH, creating a Lucene index"
-            + "in INDEX_PATH that can be searched with SearchFiles";
+    String usage = "java IndexFiles -index <indexPath> -docs <docsPath>";
     String indexPath = "index";
     String docsPath = null;
     boolean create = true;
@@ -73,11 +70,10 @@ public class IndexFiles {
       if ("-index".equals(args[i])) {
         indexPath = args[i+1];
         i++;
-      } else if ("-docs".equals(args[i])) {
+      }
+      else if ("-docs".equals(args[i])) {
         docsPath = args[i+1];
         i++;
-      } else if ("-update".equals(args[i])) {
-        create = false;
       }
     }
 
@@ -215,7 +211,7 @@ public class IndexFiles {
           // field that is indexed (i.e. searchable), but don't tokenize
           // the field into separate words and don't index term frequency
           // or positional information:
-          Field pathField = new StringField("path", file.getPath(), Field.Store.YES);
+          Field pathField = new StringField("ruta", file.getPath(), Field.Store.YES);
           doc.add(pathField);
 
           // Add the last modified date of the file a field named "modified".
@@ -225,16 +221,16 @@ public class IndexFiles {
           // year/month/day/hour/minutes/seconds, down the resolution you require.
           // For example the long value 2011021714 would mean
           // February 17, 2011, 2-3 PM.
-          File f = new File(file.getPath());
+          /*File f = new File(file.getPath());
           SimpleDateFormat date = new SimpleDateFormat("E MMM dd HH:mm_ss z yyyy");
           Field lastModified = new TextField("modified", date.format(f.lastModified()), Field.Store.YES);
-          doc.add(lastModified);
+          doc.add(lastModified);*/
 
           // Add the contents of the file to a field named "contents".  Specify a Reader,
           // so that the text of the file is tokenized and indexed, but not stored.
           // Note that FileReader expects the file to be in UTF-8 encoding.
           // If that's not the case searching for special characters will fail.
-          doc.add(new TextField("contents", new BufferedReader(new InputStreamReader(fis, "UTF-8"))));
+          //doc.add(new TextField("contents", new BufferedReader(new InputStreamReader(fis, "UTF-8"))));
           if (writer.getConfig().getOpenMode() == OpenMode.CREATE) {
             // New index, so we just add the document (no old document can be there):
             System.out.println("adding " + file);

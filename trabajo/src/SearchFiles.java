@@ -1,25 +1,26 @@
 package org.apache.lucene.demo;
 
 /*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+* Licensed to the Apache Software Foundation (ASF) under one or more
+* contributor license agreements.  See the NOTICE file distributed with
+* this work for additional information regarding copyright ownership.
+* The ASF licenses this file to You under the Apache License, Version 2.0
+* (the "License"); you may not use this file except in compliance with
+* the License.  You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 
 import java.io.*;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -45,15 +46,15 @@ import javax.xml.parsers.DocumentBuilderFactory;
 /** Simple command-line based search demo. */
 public class SearchFiles {
 
-  private SearchFiles() {
-  }
+private SearchFiles() {
+}
 
-  /**
-   * Simple command-line based search demo.
-   */
+/**
+* Simple command-line based search demo.
+*/
   public static void main(String[] args) throws Exception {
     String usage =
-            "Usage:\tjava org.apache.lucene.demo.SearchFiles [-index dir] [-field f] [-repeat n] [-queries file] [-query string] [-raw] [-paging hitsPerPage]\n\nSee http://lucene.apache.org/core/4_1_0/demo/ for details.";
+        "Usage:\tjava SearchFiles -index <indexPath> -infoNeeds <infoNeedsFile> -output <resultsFile>";
     if (args.length > 0 && ("-h".equals(args[0]) || "-help".equals(args[0]))) {
       System.out.println(usage);
       System.exit(0);
@@ -62,16 +63,17 @@ public class SearchFiles {
     String index = "index";
     String output = "resultados.txt";
     String queryString = null;
-    int hitsPerPage = 10;
 
     for (int i = 0; i < args.length; i++) {
       if ("-index".equals(args[i])) {
         index = args[i + 1];
         i++;
-      } else if ("-infoNeeds".equals(args[i])) {
+      }
+      else if ("-infoNeeds".equals(args[i])) {
         infoNeeds = args[i + 1];
         i++;
-      } else if ("-output".equals(args[i])) {
+      }
+      else if ("-output".equals(args[i])) {
         output = args[i + 1];
         i++;
       }
@@ -114,8 +116,9 @@ public class SearchFiles {
         NodeList aux = nodes.item(i).getChildNodes();
         for (int j = 0; j < aux.getLength(); j++) {
           if (aux.item(j).getNodeName().equals("identifier")) {
-            informationNeeds[indice][0] = aux.item(j).getTextContent();
-          } else if (aux.item(j).getNodeName().equals("text")) {
+              informationNeeds[indice][0] = aux.item(j).getTextContent();
+          }
+          else if (aux.item(j).getNodeName().equals("text")) {
             informationNeeds[indice][1] = aux.item(j).getTextContent();
           }
         }
@@ -128,8 +131,17 @@ public class SearchFiles {
 
     for (int i = 0; i < 5; i++) {
       String consulta = informationNeeds[i][1];
+      consulta = consulta.replaceAll("([\\s|\\(|\\),|\\.|¿|?])", " ");
+      String consultaCorregida = "";
+      System.out.println("saneada: " + consulta + "\n");
 
-      System.out.println("PROCESANDO: " + consulta);
+      ArrayList<String> consultaTokenizada = new ArrayList<String>(Arrays.asList(consulta.split(" ")));
+
+      /*for(int j = 0; j < consultaTokenizada.size(); j++){
+        System.out.print(consultaTokenizada.get(j) + " - ");
+      }*/
+
+      System.out.println("CONSULTA: " + consulta);
       int desde = -1, hasta = -1;
       Pattern fecha = Pattern.compile("(publicados entre |periodo | a partir de )(?<anyo>\\d\\d\\d\\d)");
       Matcher m = fecha.matcher(consulta);
@@ -147,16 +159,20 @@ public class SearchFiles {
         while (m.find()) {
           desde = 2018 - Integer.parseInt(m.group("anyo"));
           hasta = 2018;
-        }
+          }
       }
-      System.out.println("desde: " + desde + " hasta: " + hasta);
-      Query dateQuery = IntPoint.newRangeQuery("date", Integer.MIN_VALUE, Integer.MAX_VALUE);
+      Query dateQuery;
       if (desde != -1 && hasta != -1) {
         dateQuery = IntPoint.newRangeQuery("date", desde, hasta);
-      } else if (desde != -1) {
+      }
+      else if (desde != -1) {
         dateQuery = IntPoint.newRangeQuery("date", desde, Integer.MAX_VALUE);
-      } else if (hasta != -1) {
+      }
+      else if (hasta != -1) {
         dateQuery = IntPoint.newRangeQuery("date", Integer.MIN_VALUE, hasta);
+      }
+      else{
+        dateQuery = IntPoint.newRangeQuery("date", Integer.MIN_VALUE, Integer.MAX_VALUE);
       }
 
       Pattern propio = Pattern.compile("(?<nombre>[Á-ÚA-Z][a-zá-ú]+)");
@@ -166,60 +182,57 @@ public class SearchFiles {
         if (nombres.contains(m.group("nombre"))) {
           nom += m.group("nombre") + " ";
         }
+      }
 
-        String tipo="";
-        Pattern ptipo = Pattern.compile("master| tesis de fin de master| tesis de master|trabajo fin de master |trabajo de doctorado|doctora");
+      String tipo="";
+      Pattern ptipo = Pattern.compile("master| tesis de fin de master| tesis de master|trabajo fin de master |trabajo de doctorado|doctora");
+      if(ptipo.matcher(consulta).find()){
+        tipo = "masterthesis";
+      }
+      else {
+        ptipo = Pattern.compile("tfg |trabajo fin de grado");
         if(ptipo.matcher(consulta).find()){
-          tipo="masterthesis";
+          tipo = "bachelorthesis";
         }
-        else {
-          ptipo = Pattern.compile("tfg |trabajo fin de grado");
-          if(ptipo.matcher(consulta).find()){
-            tipo="bachelorthesis";
-          }
-        }
+      }
 
-        Query tipoQuery = null;
-        if(!tipo.equals("")){
-          QueryParser parserTipo = new QueryParser("type", analyzer);
-          tipoQuery = parserTipo.parse(tipo);
-        }
+      QueryParser parserTitle = new QueryParser("title", analyzer);
+      Query tituloQuery = parserTitle.parse(consulta);
 
-        QueryParser parserTitle = new QueryParser("title", analyzer);
-        Query tituloQuery = parserTitle.parse(consulta);
+      QueryParser parserSubject = new QueryParser("subject", analyzer);
+      Query subjectQuery = parserSubject.parse(consulta);
 
-        QueryParser parserSubject = new QueryParser("subject", analyzer);
-        Query subjectQuery = parserSubject.parse(consulta);
+      QueryParser parserDescription = new QueryParser("description", analyzer);
+      Query descriptionQuery = parserDescription.parse(consulta);
 
-        QueryParser parserDescription = new QueryParser("description", analyzer);
-        Query descriptionQuery = parserDescription.parse(consulta);
-
-        Builder builderConsulta = new BooleanQuery.Builder()                
+      Builder builderConsulta = new BooleanQuery.Builder()                
                 .add(new BoostQuery(tituloQuery, 1), BooleanClause.Occur.SHOULD)
                 .add(new BoostQuery(subjectQuery, 1.4f), BooleanClause.Occur.SHOULD)
                 .add(new BoostQuery(dateQuery, 1f), BooleanClause.Occur.SHOULD)
                 .add(new BoostQuery(descriptionQuery, 0.3f), BooleanClause.Occur.SHOULD);
-        
-        if (nom != "") {
-          QueryParser parserNombre = new QueryParser("creator", nameAnalyzer);
-          Query creator = parserNombre.parse(nom);
-          builderConsulta.add(new BoostQuery(creator, 5), BooleanClause.Occur.SHOULD);
-        }
-        if(tipoQuery!=null){
-          builderConsulta.add(new BoostQuery(tipoQuery,0.75f),BooleanClause.Occur.SHOULD);
-        }
-        Query query = builderConsulta.build();
-        TopDocs results = searcher.search(query, Integer.MAX_VALUE);
-        ScoreDoc[] hits = results.scoreDocs;
-        hits = searcher.search((Query) query, (int) results.totalHits).scoreDocs;
 
-        for (int j = 0; j < hits.length; j++) {
-          Document doc = searcher.doc(hits[j].doc);
-          resultadoWriter.println(informationNeeds[i][0] + "\t" + doc.get("path"));
-        }
+      if (nom != "") {
+        QueryParser parserNombre = new QueryParser("creator", nameAnalyzer);
+        Query creator = parserNombre.parse(nom);
+        builderConsulta.add(new BoostQuery(creator, 5), BooleanClause.Occur.SHOULD);
+      }
+      if(tipo != ""){
+        QueryParser parserTipo = new QueryParser("type", analyzer);
+        Query tipoQuery = parserTipo.parse(tipo);
+        builderConsulta.add(new BoostQuery(tipoQuery,0.75f),BooleanClause.Occur.SHOULD);
+      }
+      Query query = builderConsulta.build();
+      TopDocs results = searcher.search(query, Integer.MAX_VALUE);
+      ScoreDoc[] hits = results.scoreDocs;
+      hits = searcher.search((Query) query, (int) results.totalHits).scoreDocs;
+
+      for (int j = 0; j < hits.length; j++) {
+        Document doc = searcher.doc(hits[j].doc);
+        resultadoWriter.println(informationNeeds[i][0] + "\t" + doc.get("ruta"));
       }
     }
     reader.close();
     resultadoWriter.close();
   }
 }
+
