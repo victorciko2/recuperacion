@@ -73,6 +73,7 @@ public static int Hamming(String n, String m) {
       System.out.println(usage);
       System.exit(0);
     }
+
     String infoNeeds = "C:\\Users\\Portatil\\Desktop\\Davy\\7CUATRI\\RI\\recuperacion\\trabajo\\src\\selectedInformationNeeds.xml";
     String index = "index";
     String output = "resultados.txt";
@@ -115,8 +116,9 @@ public static int Hamming(String n, String m) {
       nombres.add(linea);
     }
 
-    archivo = new File("C:\\Users\\Portatil\\Desktop\\Davy\\7CUATRI\\RI\\recuperacion\\trabajo\\src\\diccionarioPalabras.txt");
-    fr = new FileReader(archivo);
+    String pathDiccionario = new File("src\\diccionarioPalabras.txt").getAbsolutePath();
+    //archivo = new File("C:\\Users\\Portatil\\Desktop\\Davy\\7CUATRI\\RI\\recuperacion\\trabajo\\src\\diccionarioPalabras.txt");
+    fr = new FileReader(pathDiccionario);
     br = new BufferedReader(fr);
 
     linea = "";
