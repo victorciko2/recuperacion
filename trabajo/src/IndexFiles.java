@@ -30,6 +30,7 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig.OpenMode;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.Term;
+import org.apache.lucene.search.similarities.BM25Similarity;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
@@ -95,7 +96,7 @@ public class IndexFiles {
       Directory dir = FSDirectory.open(Paths.get(indexPath));
       Analyzer analyzer = new Analizador();
       IndexWriterConfig iwc = new IndexWriterConfig(analyzer);
-
+      iwc.setSimilarity(new BM25Similarity());
       if (create) {
         // Create a new index in the directory, removing any
         // previously indexed documents:
@@ -114,6 +115,7 @@ public class IndexFiles {
 
       IndexWriter writer = new IndexWriter(dir, iwc);
       indexDocs(writer, docDir);
+      
 
       // NOTE: if you want to maximize search performance,
       // you can optionally call forceMerge here.  This can be

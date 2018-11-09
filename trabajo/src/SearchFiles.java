@@ -36,6 +36,7 @@ import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.search.*;
 import org.apache.lucene.search.BooleanQuery.Builder;
 import org.apache.lucene.queryparser.classic.QueryParser;
+import org.apache.lucene.search.similarities.BM25Similarity;
 import org.apache.lucene.store.FSDirectory;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -81,6 +82,7 @@ private SearchFiles() {
 
     IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get(index)));
     IndexSearcher searcher = new IndexSearcher(reader);
+    searcher.setSimilarity(new BM25Similarity());
     Analyzer analyzer = new Analizador();
     Analyzer nameAnalyzer = new AnalizadorNombre();
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
