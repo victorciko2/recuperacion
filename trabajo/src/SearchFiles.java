@@ -233,7 +233,7 @@ public static int Hamming(String n, String m) {
       Query descriptionQuery = parserDescription.parse(consulta);
 
       Builder builderConsulta = new BooleanQuery.Builder()                
-                .add(new BoostQuery(tituloQuery, 1), BooleanClause.Occur.SHOULD)
+                .add(new BoostQuery(tituloQuery, 1.2f), BooleanClause.Occur.SHOULD)
                 .add(new BoostQuery(subjectQuery, 1.4f), BooleanClause.Occur.SHOULD)
                 .add(new BoostQuery(dateQuery, 1f), BooleanClause.Occur.SHOULD)
                 .add(new BoostQuery(descriptionQuery, 0.3f), BooleanClause.Occur.SHOULD);

@@ -2,20 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="114b8679-0071-469c-a809-0651ce1e62cf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/_2f.cfe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/_2f.cfs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/_2f.si" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index/segments_1u" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/trabajo/AnalizadorNombre$DefaultSetHolder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/trabajo/AnalizadorNombre.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/trabajo/diccionarioPalabras.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/trabajo/diccionarioPalabras.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/trabajo/org/apache/lucene/demo/SearchFiles.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/trabajo/org/apache/lucene/demo/SearchFiles.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/trabajo/selectedInformationNeeds.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/trabajo/selectedInformationNeeds.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/_2j.cfe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/_2j.cfs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/_2j.si" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/segments_1y" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resultados.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resultados.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SearchFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SearchFiles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/diccionarioPalabras.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/diccionarioPalabras.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trabajo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/trabajo.iml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,12 +38,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1" />
+          <entry key="java" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1" />
+          <entry key="JAVA" value="4" />
         </counts>
       </usages-collector>
     </session>
@@ -101,17 +93,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Analizador.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
+            <state relative-caret-position="-1473">
               <caret line="45" selection-start-line="45" selection-end-line="45" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SearchFiles.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
+            <state relative-caret-position="294">
+              <caret line="235" column="53" selection-start-line="235" selection-start-column="53" selection-end-line="235" selection-end-column="53" />
               <folding>
                 <element signature="e#4077#4085#0" expanded="true" />
               </folding>
@@ -120,27 +112,9 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9396">
-              <caret line="490" column="21" lean-forward="true" selection-start-line="490" selection-start-column="21" selection-end-line="490" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resultados.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="3546" column="48" selection-start-line="3546" selection-start-column="48" selection-end-line="3546" selection-end-column="48" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/IndexFiles.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
+            <state relative-caret-position="103">
               <caret line="61" column="25" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
             </state>
           </provider>
@@ -167,16 +141,15 @@
         <option value="$PROJECT_DIR$/src/IndexFiles.java" />
         <option value="$PROJECT_DIR$/src/Analizador.java" />
         <option value="$PROJECT_DIR$/src/AnalizadorNombre.java" />
-        <option value="$PROJECT_DIR$/src/SearchFiles.java" />
         <option value="$PROJECT_DIR$/resultados.txt" />
+        <option value="$PROJECT_DIR$/src/SearchFiles.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="335" />
-    <option name="y" value="-30" />
-    <option name="width" value="975" />
-    <option name="height" value="1030" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="413" />
+    <option name="width" value="1514" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -210,7 +183,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541786217606" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541788378452" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../lucene-7.0.0/queryparser/lucene-queryparser-7.0.0.jar!/" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
@@ -312,10 +285,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="413" y="0" width="1514" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15618336" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20151307" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -324,7 +297,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.12039045" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26725084" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -380,17 +353,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/IndexFiles2.java" />
     <entry file="file://$PROJECT_DIR$/src/SearchFiles2.java" />
-    <entry file="file://$PROJECT_DIR$/src/Analizador.java">
+    <entry file="file://$PROJECT_DIR$/resultados.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        <state relative-caret-position="737">
+          <caret line="31770" column="48" selection-start-line="31769" selection-start-column="48" selection-end-line="31770" selection-end-column="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/IndexFiles.java">
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="61" column="25" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
+        <state relative-caret-position="9396">
+          <caret line="508" column="21" lean-forward="true" selection-start-line="508" selection-start-column="21" selection-end-line="508" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -401,27 +374,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Analizador.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1473">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IndexFiles.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="61" column="25" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/SearchFiles.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
+        <state relative-caret-position="294">
+          <caret line="235" column="53" selection-start-line="235" selection-start-column="53" selection-end-line="235" selection-end-column="53" />
           <folding>
             <element signature="e#4077#4085#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9396">
-          <caret line="490" column="21" lean-forward="true" selection-start-line="490" selection-start-column="21" selection-end-line="490" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resultados.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="3546" column="48" selection-start-line="3546" selection-start-column="48" selection-end-line="3546" selection-end-column="48" />
         </state>
       </provider>
     </entry>
