@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3d4bc89b-23a0-4b49-be0d-494b3cdbaf98" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/diccionarioPalabras.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/diccionarioPalabras.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trabajo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../trabajo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trabajo/out/production/trabajo/org/apache/lucene/analysis/es/Analizador$DefaultSetHolder.class" beforeDir="false" afterPath="$PROJECT_DIR$/../trabajo/out/production/trabajo/org/apache/lucene/analysis/es/Analizador$DefaultSetHolder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../trabajo/out/production/trabajo/org/apache/lucene/analysis/es/Analizador.class" beforeDir="false" afterPath="$PROJECT_DIR$/../trabajo/out/production/trabajo/org/apache/lucene/analysis/es/Analizador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/_8.cfe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/_8.cfs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/_8.si" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index/segments_5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/medidasEvaluacion/diccionarioPalabras.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/medidasEvaluacion/diccionarioPalabras.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resultados.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resultados.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,16 +44,18 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="iml" value="1" />
           <entry key="java" value="3" />
           <entry key="txt" value="1" />
-          <entry key="xml" value="1" />
+          <entry key="xml" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="IDEA_MODULE" value="1" />
           <entry key="JAVA" value="3" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="XML" value="1" />
+          <entry key="XML" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -68,11 +74,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Evaluation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="455">
-              <caret line="221" lean-forward="true" selection-start-line="221" selection-end-line="221" />
+            <state relative-caret-position="799">
+              <caret line="214" column="18" selection-start-line="214" selection-start-column="18" selection-end-line="214" selection-end-column="18" />
               <folding>
                 <element signature="e#796#825#0" expanded="true" />
                 <element signature="e#1390#1416#0" expanded="true" />
@@ -84,7 +90,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/IndexFiles.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
+            <state relative-caret-position="255">
               <caret line="96" column="43" selection-start-line="96" selection-start-column="43" selection-end-line="96" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -94,10 +100,24 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/medidasEvaluacion.iml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="26" column="42" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SearchFiles.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="100" column="38" selection-start-line="100" selection-start-column="28" selection-end-line="100" selection-end-column="38" />
+            <state relative-caret-position="217">
+              <caret line="255" column="45" selection-start-line="255" selection-start-column="45" selection-end-line="255" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -105,7 +125,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/diccionarioPalabras.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
+            <state relative-caret-position="410">
               <caret line="127" selection-start-line="127" selection-end-line="127" />
             </state>
           </provider>
@@ -138,6 +158,7 @@
       <find>entryA</find>
       <find>parts[2]</find>
       <find>qrels</find>
+      <find>&lt;&lt;&lt;</find>
     </findStrings>
     <replaceStrings>
       <replace>resultsFile</replace>
@@ -181,6 +202,11 @@
             <path>
               <item name="medidasEvaluacion" type="b2602c69:ProjectViewProjectNode" />
               <item name="medidasEvaluacion" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="medidasEvaluacion" type="b2602c69:ProjectViewProjectNode" />
+              <item name="medidasEvaluacion" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -196,7 +222,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544983852319" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544984127258" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -280,7 +306,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.05771812" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28053692" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -312,19 +338,30 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/informationNeeds.xml">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/src/Evaluation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="214" column="18" selection-start-line="214" selection-start-column="18" selection-end-line="214" selection-end-column="18" />
+          <folding>
+            <element signature="e#796#825#0" expanded="true" />
+            <element signature="e#1390#1416#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/diccionarioPalabras.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
+        <state relative-caret-position="410">
           <caret line="127" selection-start-line="127" selection-end-line="127" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/informationNeeds.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/IndexFiles.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
+        <state relative-caret-position="255">
           <caret line="96" column="43" selection-start-line="96" selection-start-column="43" selection-end-line="96" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -332,21 +369,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SearchFiles.java">
+    <entry file="file://$PROJECT_DIR$/medidasEvaluacion.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="100" column="38" selection-start-line="100" selection-start-column="28" selection-end-line="100" selection-end-column="38" />
+        <state relative-caret-position="442">
+          <caret line="26" column="42" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Evaluation.java">
+    <entry file="file://$PROJECT_DIR$/src/SearchFiles.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="221" lean-forward="true" selection-start-line="221" selection-end-line="221" />
-          <folding>
-            <element signature="e#796#825#0" expanded="true" />
-            <element signature="e#1390#1416#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="217">
+          <caret line="255" column="45" selection-start-line="255" selection-start-column="45" selection-end-line="255" selection-end-column="45" />
         </state>
       </provider>
     </entry>

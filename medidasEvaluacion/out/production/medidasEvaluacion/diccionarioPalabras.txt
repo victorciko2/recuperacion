@@ -123,5 +123,8 @@ centrados
 en
 placas
 fotovoltaicas
+<<<<<<< HEAD
 cartografía
 españa
+=======
+>>>>>>> 7e1b8afb2ad0dd5a10a61bc66d1f2ad944b66c1f
