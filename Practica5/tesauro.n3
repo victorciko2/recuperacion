@@ -1,0 +1,158 @@
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ns: <http://www.07.com/> .
+
+ns:Crisis rdf:type skos:Concept ;
+		  skos:narrower ns:CrisisEconomica ;
+		  skos:narrower ns:VisionEmpresarial .
+ns:CrisisEconomica rdf:type skos:Concept;
+				   skos:prefLabel "crisis economica" ;
+				   skos:altLabel "crisis europea" ;
+				   skos:altLabel "crisis economicas" ;
+				   skos:altLabel "crisis de la economia" ;
+				   skos:altLabel "crisis en la economia" ;
+				   skos:altLabel "crisis de la banca" ;
+				   skos:altLabel "crisis de los bancos" ;
+				   skos:altLabel "crisis en la banca" ;
+				   skos:altLabel "crisis en los bancos" ;
+				   skos:altLabel "crisis economica mundial" ;
+				   skos:altLabel "desarrollo economico" ;
+				   skos:altLabel "crisis agraria" ;
+				   skos:altLabel "crisis agrarias" ;	
+				   skos:altLabel "crisis bancaria" ;
+				   skos:altLabel "crisis bancarias" ;
+				   skos:altLabel "crisis bursatiles" ;
+				   skos:altLabel "crisis bursatil" ;
+				   skos:altLabel "crisis de oferta" ;
+				   skos:altLabel "crisis de ofertas" ;
+				   skos:altLabel "crisis energetica" ;
+				   skos:altLabel "crisis de demanda" ;
+				   skos:altLabel "crisis de demandas" ;
+				   skos:altLabel "crisis energeticas" ;
+				   skos:altLabel "crisis financiera" ;
+				   skos:altLabel "crisis financieras" ;
+				   skos:altLabel "crisis de posguerra" ;
+				   skos:altLabel "crisis de postguerra" ;
+				   skos:altLabel "crisis de suministros" ;
+				   skos:broader ns:Crisis .
+
+ns:VisionEmpresarial rdf:type skos:Concept ;
+					  skos:prefLabel "vision empresarial" ;
+					  skos:altLabel "vision de empresa" ;
+					  skos:altLabel "vision de mercado" ;
+					  skos:altLabel "perspectiva empresarial" ;
+					  skos:altLabel "perspectiva de empresa" ;
+					  skos:altLabel "perspectiva de mercado" ;
+					  skos:altLabel "enfoque empresarial" ;
+					  skos:altLabel "enfoque de empresa" ;
+					  skos:altLabel "enfoque de mercado" ;
+					  skos:broader ns:Crisis .
+
+ns:Feminismo rdf:type skos:Concept ;
+			 skos:prefLabel "feminismo" ;
+			 skos:altLabel "feminista" ;
+			 skos:altLabel "emancipacion" ; 
+			 skos:altLabel "sufragismo" ;
+			 skos:altLabel "liberacion" ;
+			 skos:altLabel "igualdad" ;
+			 skos:altLabel "igualitarismo" ;
+			 skos:altLabel "igualdad de derechos" ;
+			 skos:altLabel "igualdad social" ;
+			 skos:altLabel "igualdad de genero" ;
+			 skos:narrower ns:Mujer .
+
+ns:Mujer rdf:type skos:Concept ;
+		 skos:prefLabel "mujer" ;
+		 skos:altLabel "mujeres" ;
+		 skos:altLabel "hembra" ;
+		 skos:altLabel "hembras" ;
+		 skos:altLabel "femina" ;
+		 skos:altLabel "feminas" ;
+		 skos:broader ns:Feminismo .
+
+ns:ConstruccionesEspañolas rdf:type skos:Concept ;
+				  skos:prefLabel "construcciones españolas" ;
+				  skos:altLabel "contruccion española" ;
+				  skos:altLabel "construccion de españa" ;
+				  skos:altLabel "construcciones de españa" ;
+				  skos:altLabel "edificacion española" ;
+				  skos:altLabel "edificaciones españolas" ;
+				  skos:altLabel "edificaciones de españa" ;
+				  skos:altLabel "edificacion de españa" .
+
+ns:Trabajos rdf:type skos:Concept ;
+			skos:narrower ns:TFG ;
+			skos:narrower ns:TFM ;
+			skos:narrower ns:FP ;
+			skos:narrower ns:ESO ;
+			skos:narrower ns:Bachillerato .
+
+ns:TFG rdf:type skos:Concept ;
+	   skos:prefLabel "trabajo de fin de grado" ;
+	   skos:altLabel "trabajo fin de grado" ;
+	   skos:altLabel "trabajo fin grado" ;
+	   skos:altLabel "tfg" ;
+	   skos:broader ns:Trabajos .
+
+ns:TFM rdf:type skos:Concept ;
+	   skos:prefLabel "trabajo de fin de master" ;
+	   skos:altLabel "trabajo fin master" ;
+	   skos:altLabel "trabajo fin de master" ;
+	   skos:altLabel "master" ;
+	   skos:altLabel "tesis de master" ;
+	   skos:altLabel "tesis master" ;
+	   skos:altLabel "doctorado" ;
+	   skos:altLabel "trabajo de doctorado" ;
+	   skos:altLabel "tesis doctoral" ;
+	   skos:altLabel "tfm" ;
+	   skos:altLabel "tesis fin de master" ;
+	   skos:altLabel "tesis fin master" ;
+	   skos:altLabel "tesis fin de doctorado" ;
+	   skos:altLabel "tesis fin doctorado" ;
+	   skos:broader ns:Trabajos .
+
+ns:FP rdf:type skos:Concept ;
+	  skos:prefLabel "fp" ;
+	  skos:altLabel "formacion profesional" ;
+	  skos:broader ns:Trabajos .
+
+ns:ESO rdf:type skos:Concept ;
+	   skos:prefLabel "la eso " ;
+	   skos:altLabel "educacion secundaria" ;
+	   skos:altLabel "educacion secundaria obligatoria" ;
+	   skos:broader ns:Trabajos .
+
+ns:Bachillerato rdf:type skos:Concept ;
+				skos:prefLabel "bachillerato" ;
+				skos:altLabel "bachiller" ;
+				skos:broader ns:Trabajos .
+
+ns:Energias rdf:type skos:Concept ;
+			skos:narrower ns:EnergiasRenovables ;
+			skos:narrower ns:PlacasFotovoltaicas .
+
+ns:EnergiasRenovables rdf:type skos:Concept ;
+					  skos:prefLabel "energias renovables" ;
+					  skos:altLabel "energia renovable" ;
+					  skos:altLabel "panel solar" ;
+					  skos:altLabel "paneles solares" ;
+					  skos:altLabel "placa solar" ;
+					  skos:altLabel "placas solares" ;
+					  skos:altLabel "energia solar" ;
+					  skos:altLabel "energia hidraulica" ;
+					  skos:altLabel "energia solar" ;
+					  skos:altLabel "energia eolica" ;
+					  skos:altLabel "biomasa" ;
+					  skos:altLabel "energia geotermica" ;
+					  skos:altLabel "energia mareomotriz" ;
+					  skos:broader ns:Energias .
+
+ns:PlacasFotovoltaicas rdf:type skos:Concept ;
+					   skos:prefLabel "placas fotovoltaicas" ;
+					   skos:altLabel "placa fotovoltaica" ;
+					   skos:altLabel "panel fotovoltaico" ;
+					   skos:altLabel "paneles fotovoltaicos" ;
+					   skos:broader ns:Energias .
+
+ns:Otros rdf:type skos:Concept ;
+		 rdf:prefLabel "otros" .

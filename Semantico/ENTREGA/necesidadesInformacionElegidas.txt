@@ -1,0 +1,5 @@
+02-1	SELECT DISTINCT ?x  WHERE  { ?x <http://www.equipo03.com/Tema> ?y. ?y <Broader> <http://www.equipo03.com/Tecnologia>. ?x <http://www.equipo03.com/Fecha> ?z FILTER (?z >= 2010) }
+02-4	SELECT DISTINCT ?x WHERE { ?x <http://www.equipo03.com/Autor> ?y. ?y  <http://www.equipo03.com/Autor/Nombre> ?nom. ?x <http://www.equipo03.com/Fecha> ?z  FILTER NOT EXISTS {?x <http://www.equipo03.com/Autor> ?ped. ?ped <http://www.equipo03.com/Autor/Nombre> "Pedro" }FILTER ( regex(?nom, "Juan", "i" ) && ?z<=2015)}
+04-2	SELECT DISTINCT ?x  WHERE  { ?x <http://www.equipo03.com/Tema> ?y. ?y <Broader> <http://www.equipo03.com/BDD> }
+04-3	SELECT DISTINCT ?x WHERE { ?x <http://www.equipo03.com/Tema> ?y. ?y <Broader> <http://www.equipo03.com/Frontera> }
+06-3	SELECT DISTINCT ?x WHERE { ?x <http://www.equipo03.com/Tema> ?y. ?y <Broader> <http://www.equipo03.com/Salud> OPTIONAL { ?x <http://www.equipo03.com/Fecha> ?z FILTER(?z>=1970 && ?z<=2000) }}

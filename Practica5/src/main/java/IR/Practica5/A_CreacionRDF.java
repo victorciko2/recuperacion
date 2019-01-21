@@ -3,8 +3,6 @@ package IR.Practica5;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.rdf.model.Statement;
-import org.apache.jena.rdf.model.impl.StatementImpl;
 import org.apache.jena.vocabulary.VCARD;
 
 /**
@@ -42,21 +40,6 @@ public class A_CreacionRDF {
                       model.createResource()
                            .addProperty(VCARD.Given, givenName)
                            .addProperty(VCARD.Family, familyName));
-        String personURI2  = "http://somewhere/JohnSmith2";
-        String givenName2    = "John";
-        String familyName2   = "Smith";
-        String fullName2     = givenName + " " + familyName;
-
-        // le a�ade las propiedades
-        Resource johnSmith2  = model.createResource(personURI2)
-                .addProperty(VCARD.FN, fullName2)
-                .addProperty(model.createProperty("http://xmlns.com/foaf/0.1/knows"), johnSmith)
-                .addProperty(VCARD.N,
-                        model.createResource()
-                                .addProperty(VCARD.Given, givenName2)
-                                .addProperty(VCARD.Family, familyName2));
-        johnSmith.addProperty(model.createProperty("http://xmlns.com/foaf/0.1/knows"), johnSmith2);
-        model.add
         return model;
 	}
 	

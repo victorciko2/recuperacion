@@ -39,7 +39,7 @@
         <cert:key rdf:parseType="Resource">
             <rdf:type rdf:resource="http://www.w3.org/ns/auth/cert#RSAPublicKey"/>
             <cert:exponent rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">65537</cert:exponent>
-            <cert:modulus rdf:datatype="http://www.w3.org/2001/XMLSchema#hexBinary">d7a0e91eedddcc905d5eccd1e412ab0c5bdbe118fa99b7132d915452f0b09af5ebc0096ca1dbdeec32723f5ddd2b05564e2ce67effba8e86778e114a02a3907c2e6c6b28cf16fe77d0ef0c44d2e3ccd3e0b6e8cfdd197e3aa86ec199980729af4451f7999bce55eb34bd5a5350470463700f7308e372bdb6e075e0bb8a8dba93686fa4ae51317a44382bb09d09294c1685b1097ffd59c446ae567faece6b6aa27897906b524a64989bd48cfeaec61d12cc0b63ddb885d2dadb0b358c666aa93f5a443fb91fc2a3dc699eb46159b05c5758c9f13ed2844094cc539e582e11de36c6733a67b5125ef407b329ef5e922ca5746a5ffc67b650b4ae36610fca0cd7b</cert:modulus>
+            <cert:modulus rdf:datatype="http://www.w3.org/2001/XMLSchema#hexBinary">d7a0e91eedddcc905d5eccd1e412ab0c5bdbe118fa99b7132d915452f0b09af5ebc0096ca1dbdeec32723f5ddd2b05564e2ce67effba8e86778e114a02a3907c2e6c6b28cf16fee77d0ef0c44d2e3ccd3e0b6e8cfdd197e3aa86ec199980729af4451f7999bce55eb34bd5a5350470463700f7308e372bdb6e075e0bb8a8dba93686fa4ae51317a44382bb09d09294c1685b1097ffd59c446ae567faece6b6aa27897906b524a64989bd48cfeaec61d12cc0b63ddb885d2dadb0b358c666aa93f5a443fb91fc2a3dc699eb46159b05c5758c9f13ed2844094cc539e582e11de36c6733a67b5125ef407b329ef5e922ca5746a5ffc67b650b4ae36610fca0cd7b</cert:modulus>
         </cert:key>
     </rdf:Description>
 
