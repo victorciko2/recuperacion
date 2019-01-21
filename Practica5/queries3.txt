@@ -1,0 +1,1 @@
+11-4 SELECT DISTINCT ?id WHERE{ ?doc ns:Identifier ?id . { ?doc ns:Subject ns:PlacasFotovoltaicas } UNION { ?doc ns:Subject ns:EnergiasRenovables } . ?doc ns:Date ?Date . FILTER ( ?Date < "2019"^^xsd:long && ?Date > "2012"^^xsd:long ) }

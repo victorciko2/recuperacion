@@ -70,15 +70,19 @@ ns:Mujer rdf:type skos:Concept ;
 		 skos:altLabel "feminas" ;
 		 skos:broader ns:Feminismo .
 
-ns:ConstruccionesEspañolas rdf:type skos:Concept ;
-				  skos:prefLabel "construcciones españolas" ;
-				  skos:altLabel "contruccion española" ;
-				  skos:altLabel "construccion de españa" ;
-				  skos:altLabel "construcciones de españa" ;
-				  skos:altLabel "edificacion española" ;
-				  skos:altLabel "edificaciones españolas" ;
-				  skos:altLabel "edificaciones de españa" ;
-				  skos:altLabel "edificacion de españa" .
+ns:ConstruccionesEspanolas rdf:type skos:Concept ;
+				  skos:prefLabel "construcciones espanolas" ;
+				  skos:altLabel "contruccion espanola" ;
+				  skos:altLabel "construccion de espana" ;
+				  skos:altLabel "construcciones de espana" ;
+				  skos:altLabel "edificacion espanola" ;
+				  skos:altLabel "edificaciones espanolas" ;
+				  skos:altLabel "edificaciones de espana" ;
+				  skos:altLabel "construccion";
+				  skos:altLabel "construcciones";
+				  skos:altLabel "edificacion" ;
+				  skos:altLabel "edificaciones" ;
+				  skos:altLabel "edificacion de espana" .
 
 ns:Trabajos rdf:type skos:Concept ;
 			skos:narrower ns:TFG ;

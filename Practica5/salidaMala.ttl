@@ -1,0 +1,21 @@
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ns: <http://www.07.com/> .
+@prefix odns: <http://ourDocumentNameSpace/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+
+<http://www.07.com/oai_zaguan.unizar.es_10002.xml>
+        <http://www.07.com/Creator>     "http://www.07.com/gabelas_barroso_jose_antonio" , "http://www.07.com/remon_esteban_ana_cristina" ;
+        <http://www.07.com/Date>        "2013"^^<http://www.w3.org/2001/XMLSchema#long> ;
+        <http://www.07.com/Description>
+                "la television ocupa un espacio muy importante en el dia a dia de todo el mundo la influencia que esta ejerce sobre los publicos es muy grande y por ello la evolucion que ha tenido la television de un tiempo a esta parte afecta de manera muy directa a la poblacion la telebasura es un fenomeno del que todo el mundo habla pero del que se tienen muy pocas premisas academicas se trata de un termino subjetivo que no implica que todas las personas sean capaces de captarlo de la misma manera puede ser que lo que una persona considere telebasura no lo sea para otra entran en juego diferentes aspectos que hacen que el publico se enfrente a los contenidos de la television de una manera diferente dependiendo de sus condiciones personales sus experiencias sus prejuicios los individuos tienen diferente escala de valores y por ello consideran apropiadas diferentes actuaciones o contenidos es por esta razon por lo que resulta complicado investigar una serie de parametros que se establezcan como baremo televisivo para de este modo diferenciar lo que es telebasura de lo que no resulta muy complicado distinguirla pero a pesar de ello esta muy introducida en la television y en la sociedad en general de una manera tan fuerte que incluso resulta complicado en mas de una ocasion ser consciente de su existencia " ;
+        <http://www.07.com/Format>      "pdf" ;
+        <http://www.07.com/Identifier>  "http://zaguan.unizar.es/record/10002" ;
+        <http://www.07.com/Language>    "spa" ;
+        <http://www.07.com/Name>        "remon_esteban_ana_cristina" , "gabelas_barroso_jose_antonio" ;
+        <http://www.07.com/Publisher>   "universidad de zaragoza" ;
+        <http://www.07.com/Rights>      "by-nc-sa, http://creativecommons.org/licenses/by-nc-sa/3.0/" ;
+        <http://www.07.com/Subject>     <http://www.07.com/Otros> ;
+        <http://www.07.com/Title>       "la telebasura como el fenomeno televisivo imperante" ;

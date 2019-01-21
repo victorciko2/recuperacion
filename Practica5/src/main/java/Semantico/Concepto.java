@@ -45,6 +45,7 @@ public class Concepto {
     public void addAltLabel(String concepto) {
         altLabel.add(concepto);
     }
+
     @Override
     public boolean equals(Object concept) {
         String cmp = (String) concept;

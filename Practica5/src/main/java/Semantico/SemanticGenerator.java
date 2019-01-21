@@ -58,6 +58,7 @@ public class SemanticGenerator {
                 .replace(">", " ")
                 .replace("\t", " ")
                 .replace("*", " ")
+                .replace("ñ", "n")
                 .replaceAll("…", " ")
                 .replaceAll("[0-9]+", " ")
                 .replaceAll("[ ]+", " ");
@@ -121,11 +122,17 @@ public class SemanticGenerator {
         for (String subject : subjects){
             todo += " " + subject;
         }
+        String s = "";
+        Boolean temaEscrito = false;
         for (Concepto concepto : c){
-            String s = buscar(concepto, todo);
+            s = buscar(concepto, todo);
             if (!s.equals("")){
+                temaEscrito = true;
                 documento = documento.addProperty(propSubject, model.createResource("http://www.07.com/" + s));
             }
+        }
+        if (!temaEscrito){
+            documento = documento.addProperty(propSubject, model.createResource("http://www.07.com/Otros"));
         }
         return model;
     }
@@ -235,6 +242,7 @@ public class SemanticGenerator {
                 // Trabajar con el fichero file
                 generarRDF(ficheroEntrada, ficheroSalida, c);
             }
+            System.out.println("Documento: " + cont);
         }
     }
 
@@ -300,7 +308,7 @@ public class SemanticGenerator {
         String rdfPath = "salida.txt";
         File rdfSalida = new File(rdfPath);
         String skosPath = "tesauro.n3";
-        String docsPath = "D:\\Victor\\7CUATRI\\RI\\recuperacion\\trabajo\\prueba\\";
+        String docsPath = "D:\\Victor\\7CUATRI\\RI\\recuperacion\\trabajo\\recordsdc\\";
 
         for (int i = 0; i < args.length; i++) {
             if ("-rdf".equals(args[i])) {
@@ -380,7 +388,6 @@ public class SemanticGenerator {
             aux = st.getSubject().getURI();
         }
 
-        System.out.println("Tamaño de conceptos: " + conceptos.size());
         recorrerDirectorio(docDir, rdfSalida, conceptos);
 
         System.out.println("Total: " + cont);

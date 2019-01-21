@@ -1,0 +1,5 @@
+03-5 SELECT DISTINCT ?id WHERE { ?doc ns:Identifier ?id . { ?doc ns:Subject ns:CrisisEconomica } UNION { ?doc ns:Subject ns:VisionEmpresarial } . }
+05-2 SELECT DISTINCT ?id WHERE{ ?doc ns:Identifier ?id . { ?doc ns:Subject ns:Feminismo . ?doc ns:Subject  ns:Mujer } UNION { ?doc ns:Subject ns:Feminismo } . }
+07-3 SELECT DISTINCT ?id WHERE{ ?doc ns:Identifier ?id . { ?doc ns:Subject ns:ConstruccionesEspañolas . ?doc ns:Creator ?Creator . ?Creator ns:Name ?Name } UNION { ?doc ns:Subject ns:ConstruccionesEspañolas } . FILTER regex(?Name, "maria") }
+08-3 SELECT DISTINCT ?id WHERE{ ?doc ns:Identifier ?id . { ?doc ns:type ns:Tfg } UNION { ?doc ns:type ns:Tfm } . ?doc ns:Subject ns:ESO . ?doc ns:Subject ns:Bachillerato . ?doc ns:Date ?Date . FILTER (?Date > "2007" && ?Date < "2012" ) }
+11-4 SELECT DISTINCT ?id WHERE{ ?doc ns:Identifier ?id . { ?doc ns:Subject ns:PlacasFotovoltaicas . ?doc ns:Subject ns:EnergiasRenovables } UNION { ?doc ns:Subject ns:EnergiasRenovables } . ?doc ns:Date ?Date . FILTER ( ?Date < 2019 && ?Date > 2012 ) }
